@@ -1,4 +1,0 @@
-﻿  main.cpp
-main.cpp(3): warning C4100: “argv”: 未引用的形参
-main.cpp(3): warning C4100: “argc”: 未引用的形参
-  ListIterator.vcxproj -> C:\CPPProject\_QTExample\code\CH2\CH201\ListIterator\debug\ListIterator.exe

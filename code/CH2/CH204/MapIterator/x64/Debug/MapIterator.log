@@ -1,4 +1,0 @@
-﻿  main.cpp
-main.cpp(2): warning C4100: “argv”: 未引用的形参
-main.cpp(2): warning C4100: “argc”: 未引用的形参
-  MapIterator.vcxproj -> C:\CPPProject\_QTExample\code\CH2\CH204\MapIterator\debug\MapIterator.exe
