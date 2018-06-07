@@ -1,4 +1,4 @@
-#include "client.h"
+﻿#include "client.h"
 #include "ui_client.h"
 
 #include <QTcpSocket>
@@ -65,7 +65,7 @@ void Client::readMsg()
             bytesReceived +=fileNameSize;
 
             if(!locFile->open(QFile::WriteOnly)){
-                QMessageBox::warning(this,tr("应用程序"),tr("无法读取文件 %1:\n%2.").arg(fileName).arg(locFile->errorString()));
+                QMessageBox::warning(this,QStringLiteral("应用程序"),QStringLiteral("无法读取文件 %1:\n%2.").arg(fileName).arg(locFile->errorString()));
                 return;
             }
         } else {
@@ -82,7 +82,7 @@ void Client::readMsg()
     ui->progressBar->setValue(bytesReceived);
 
     double speed = bytesReceived / useTime;
-    ui->cStatusLbl->setText(tr("已接收 %1MB (%2MB/s) \n共%3MB 已用时：%4秒\n估计剩余时间：%5秒")
+    ui->cStatusLbl->setText(QStringLiteral("已接收 %1MB (%2MB/s) \n共%3MB 已用时：%4秒\n估计剩余时间：%5秒")
                                       .arg(bytesReceived / (1024*1024))
                                       .arg(speed*1000/(1024*1024),0,'f',2)
                                       .arg(totalBytes / (1024 * 1024))
@@ -93,7 +93,7 @@ void Client::readMsg()
     {
         locFile->close();
         tClnt->close();
-        ui->cStatusLbl->setText(tr("接收文件 %1 完毕").arg(fileName));
+        ui->cStatusLbl->setText(QStringLiteral("接收文件 %1 完毕").arg(fileName));
     }
 }
 

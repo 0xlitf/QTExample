@@ -1,4 +1,4 @@
-#include "widget.h"
+﻿#include "widget.h"
 #include "ui_widget.h"
 #include <QUdpSocket>
 #include <QHostInfo>
@@ -49,7 +49,7 @@ void Widget::sndMsg(MsgType type, QString srvaddr)
     {
     case Msg :
         if (ui->msgTxtEdit->toPlainText() == "") {
-            QMessageBox::warning(0,tr("警告"),tr("发送内容不能为空"),QMessageBox::Ok);
+            QMessageBox::warning(0,QStringLiteral("警告"),QStringLiteral("发送内容不能为空"),QMessageBox::Ok);
             return;
         }
         out << address << getMsg();
@@ -146,8 +146,8 @@ void Widget::usrEnter(QString usrname, QString ipaddr)
         ui->usrTblWidget->setItem(0,1,ip);
         ui->msgBrowser->setTextColor(Qt::gray);
         ui->msgBrowser->setCurrentFont(QFont("Times New Roman",10));
-        ui->msgBrowser->append(tr("%1 在线！").arg(usrname));
-        ui->usrNumLbl->setText(tr("在线人数：%1").arg(ui->usrTblWidget->rowCount()));
+        ui->msgBrowser->append(QStringLiteral("%1 在线！").arg(usrname));
+        ui->usrNumLbl->setText(QStringLiteral("在线人数：%1").arg(ui->usrTblWidget->rowCount()));
 
         sndMsg(UsrEnter);
     }
@@ -159,8 +159,8 @@ void Widget::usrLeft(QString usrname, QString time)
     ui->usrTblWidget->removeRow(rowNum);
     ui->msgBrowser->setTextColor(Qt::gray);
     ui->msgBrowser->setCurrentFont(QFont("Times New Roman", 10));
-    ui->msgBrowser->append(tr("%1 于 %2 离开！").arg(usrname).arg(time));
-    ui->usrNumLbl->setText(tr("在线人数：%1").arg(ui->usrTblWidget->rowCount()));
+    ui->msgBrowser->append(QStringLiteral("%1 于 %2 离开！").arg(usrname).arg(time));
+    ui->usrNumLbl->setText(QStringLiteral("在线人数：%1").arg(ui->usrTblWidget->rowCount()));
 }
 
 QString Widget::getIP()
@@ -200,7 +200,7 @@ void Widget::on_sendTBtn_clicked()
 {
     if(ui->usrTblWidget->selectedItems().isEmpty())
     {
-        QMessageBox::warning(0, tr("选择用户"),tr("请先选择目标用户！"), QMessageBox::Ok);
+        QMessageBox::warning(0, QStringLiteral("选择用户"),QStringLiteral("请先选择目标用户！"), QMessageBox::Ok);
         return;
     }
     srv->show();
@@ -212,9 +212,9 @@ void Widget::hasPendingFile(QString usrname, QString srvaddr,QString clntaddr, Q
     QString ipAddr = getIP();
     if(ipAddr == clntaddr)
     {
-        int btn = QMessageBox::information(this,tr("接受文件"),tr("来自%1(%2)的文件：%3,是否接收？").arg(usrname).arg(srvaddr).arg(filename),QMessageBox::Yes,QMessageBox::No);
+        int btn = QMessageBox::information(this,QStringLiteral("接受文件"),QStringLiteral("来自%1(%2)的文件：%3,是否接收？").arg(usrname).arg(srvaddr).arg(filename),QMessageBox::Yes,QMessageBox::No);
         if (btn == QMessageBox::Yes) {
-            QString name = QFileDialog::getSaveFileName(0,tr("保存文件"),filename);
+            QString name = QFileDialog::getSaveFileName(0,QStringLiteral("保存文件"),filename);
             if(!name.isEmpty())
             {
                 Client *clnt = new Client(this);
@@ -288,9 +288,9 @@ void Widget::curFmtChanged(const QTextCharFormat &fmt)
 void Widget::on_saveTBtn_clicked()
 {
     if (ui->msgBrowser->document()->isEmpty()) {
-        QMessageBox::warning(0, tr("警告"), tr("聊天记录为空，无法保存！"), QMessageBox::Ok);
+        QMessageBox::warning(0, QStringLiteral("警告"), QStringLiteral("聊天记录为空，无法保存！"), QMessageBox::Ok);
     } else {
-        QString fname = QFileDialog::getSaveFileName(this,tr("保存聊天记录"), tr("聊天记录"), tr("文本(*.txt);;所有文件(*.*)"));
+        QString fname = QFileDialog::getSaveFileName(this,QStringLiteral("保存聊天记录"), QStringLiteral("聊天记录"), QStringLiteral("文本(*.txt);;所有文件(*.*)"));
         if(!fname.isEmpty())
             saveFile(fname);
     }
@@ -300,7 +300,7 @@ bool Widget::saveFile(const QString &filename)
 {
     QFile file(filename);
     if (!file.open(QFile::WriteOnly | QFile::Text)) {
-        QMessageBox::warning(this, tr("保存文件"),tr("无法保存文件 %1:\n %2").arg(filename).arg(file.errorString()));
+        QMessageBox::warning(this, QStringLiteral("保存文件"),QStringLiteral("无法保存文件 %1:\n %2").arg(filename).arg(file.errorString()));
         return false;
     }
     QTextStream out(&file);

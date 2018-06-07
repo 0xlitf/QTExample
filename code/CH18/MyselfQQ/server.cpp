@@ -1,4 +1,4 @@
-#include "server.h"
+﻿#include "server.h"
 #include "ui_server.h"
 
 #include <QFile>
@@ -34,7 +34,7 @@ void Server::initSrv()
     bytesWritten = 0;
     bytesTobeWrite = 0;
 
-    ui->sStatusLbl->setText(tr("请选择要传送的文件"));
+    ui->sStatusLbl->setText(QStringLiteral("请选择要传送的文件"));
     ui->progressBar->reset();
     ui->sOpenBtn->setEnabled(true);
     ui->sSendBtn->setEnabled(false);
@@ -48,11 +48,11 @@ void Server::sndMsg()
     clntConn = tSrv->nextPendingConnection();
     connect(clntConn,SIGNAL(bytesWritten(qint64)),this,SLOT(updClntProgress(qint64)));
 
-    ui->sStatusLbl->setText(tr("开始传送文件 %1 ！").arg(theFileName));
+    ui->sStatusLbl->setText(QStringLiteral("开始传送文件 %1 ！").arg(theFileName));
 
     locFile = new QFile(fileName);
     if(!locFile->open((QFile::ReadOnly))){
-        QMessageBox::warning(this, tr("应用程序"), tr("无法读取文件 %1:\n%2").arg(fileName).arg(locFile->errorString()));
+        QMessageBox::warning(this, QStringLiteral("应用程序"), QStringLiteral("无法读取文件 %1:\n%2").arg(fileName).arg(locFile->errorString()));
         return;
     }
     totalBytes = locFile->size();
@@ -84,7 +84,7 @@ void Server::updClntProgress(qint64 numBytes)
 
     float useTime = time.elapsed();
     double speed = bytesWritten / useTime;
-    ui->sStatusLbl->setText(tr("已发送 %1MB (%2MB/s) \n共%3MB 已用时:%4秒\n估计剩余时间：%5秒")
+    ui->sStatusLbl->setText(QStringLiteral("已发送 %1MB (%2MB/s) \n共%3MB 已用时:%4秒\n估计剩余时间：%5秒")
                    .arg(bytesWritten / (1024*1024))
                    .arg(speed*1000 / (1024*1024), 0, 'f', 2)
                    .arg(totalBytes / (1024 * 1024))
@@ -94,7 +94,7 @@ void Server::updClntProgress(qint64 numBytes)
     if(bytesWritten == totalBytes) {
         locFile->close();
         tSrv->close();
-        ui->sStatusLbl->setText(tr("传送文件 %1 成功").arg(theFileName));
+        ui->sStatusLbl->setText(QStringLiteral("传送文件 %1 成功").arg(theFileName));
     }
 }
 void Server::on_sOpenBtn_clicked()
@@ -103,7 +103,7 @@ void Server::on_sOpenBtn_clicked()
     if(!fileName.isEmpty())
     {
         theFileName = fileName.right(fileName.size() - fileName.lastIndexOf('/')-1);
-        ui->sStatusLbl->setText(tr("要传送的文件为：%1 ").arg(theFileName));
+        ui->sStatusLbl->setText(QStringLiteral("要传送的文件为：%1 ").arg(theFileName));
         ui->sSendBtn->setEnabled(true);
         ui->sOpenBtn->setEnabled(false);
     }
@@ -118,7 +118,7 @@ void Server::on_sSendBtn_clicked()
         return;
     }
 
-    ui->sStatusLbl->setText(tr("等待对方接收... ..."));
+    ui->sStatusLbl->setText(QStringLiteral("等待对方接收... ..."));
     emit sndFileName(theFileName);
 }
 
@@ -137,7 +137,7 @@ void Server::on_sCloseBtn_clicked()
 void Server::refused()
 {
     tSrv->close();
-    ui->sStatusLbl->setText(tr("对方拒绝接收！"));
+    ui->sStatusLbl->setText(QStringLiteral("对方拒绝接收！"));
 }
 
 void Server::closeEvent(QCloseEvent *)

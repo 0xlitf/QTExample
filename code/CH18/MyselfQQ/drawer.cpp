@@ -1,15 +1,15 @@
-#include "drawer.h"
+﻿#include "drawer.h"
 #include <QGroupBox>
 #include <QVBoxLayout>
 
 Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     :QToolBox(parent,f)
 {
-    setWindowTitle(tr("Myself QQ 2013"));                   //设置主窗体的标题
+    setWindowTitle(QStringLiteral("Myself QQ 2013"));                   //设置主窗体的标题
     setWindowIcon(QPixmap(":/images/qq.png"));              //设置主窗体标题栏图标
 
     toolBtn1 =new QToolButton;
-    toolBtn1->setText(tr("水漂奇鼋"));
+    toolBtn1->setText(QStringLiteral("水漂奇鼋"));
     toolBtn1->setIcon(QPixmap(":/images/spqy.png"));
     toolBtn1->setIconSize(QPixmap(":/images/spqy.png").size());
     toolBtn1->setAutoRaise(true);
@@ -17,7 +17,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn1,SIGNAL(clicked()),this,SLOT(showChatWidget1()));
 
     toolBtn2 =new QToolButton;
-    toolBtn2->setText(tr("忆梦如澜"));
+    toolBtn2->setText(QStringLiteral("忆梦如澜"));
     toolBtn2->setIcon(QPixmap(":/images/ymrl.png"));
     toolBtn2->setIconSize(QPixmap(":/images/ymrl.png").size());
     toolBtn2->setAutoRaise(true);
@@ -25,7 +25,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn2,SIGNAL(clicked()),this,SLOT(showChatWidget2()));
 
     toolBtn3 =new QToolButton;
-    toolBtn3->setText(tr("北京出版人"));
+    toolBtn3->setText(QStringLiteral("北京出版人"));
     toolBtn3->setIcon(QPixmap(":/images/qq.png"));
     toolBtn3->setIconSize(QPixmap(":/images/qq.png").size());
     toolBtn3->setAutoRaise(true);
@@ -33,7 +33,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn3,SIGNAL(clicked()),this,SLOT(showChatWidget3()));
 
     toolBtn4 =new QToolButton;
-    toolBtn4->setText(tr("Cherry"));
+    toolBtn4->setText(QStringLiteral("Cherry"));
     toolBtn4->setIcon(QPixmap(":/images/Cherry.png"));
     toolBtn4->setIconSize(QPixmap(":/images/Cherry.png").size());
     toolBtn4->setAutoRaise(true);
@@ -41,7 +41,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn4,SIGNAL(clicked()),this,SLOT(showChatWidget4()));
 
     toolBtn5 =new QToolButton;
-    toolBtn5->setText(tr("淡然"));
+    toolBtn5->setText(QStringLiteral("淡然"));
     toolBtn5->setIcon(QPixmap(":/images/dr.png"));
     toolBtn5->setIconSize(QPixmap(":/images/dr.png").size());
     toolBtn5->setAutoRaise(true);
@@ -49,7 +49,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn5,SIGNAL(clicked()),this,SLOT(showChatWidget5()));
 
     toolBtn6 =new QToolButton;
-    toolBtn6->setText(tr("娇娇girl"));
+    toolBtn6->setText(QStringLiteral("娇娇girl"));
     toolBtn6->setIcon(QPixmap(":/images/jj.png"));
     toolBtn6->setIconSize(QPixmap(":/images/jj.png").size());
     toolBtn6->setAutoRaise(true);
@@ -57,7 +57,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn6,SIGNAL(clicked()),this,SLOT(showChatWidget6()));
 
     toolBtn7 =new QToolButton;
-    toolBtn7->setText(tr("落水无痕"));
+    toolBtn7->setText(QStringLiteral("落水无痕"));
     toolBtn7->setIcon(QPixmap(":/images/lswh.png"));
     toolBtn7->setIconSize(QPixmap(":/images/lswh.png").size());
     toolBtn7->setAutoRaise(true);
@@ -65,7 +65,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn7,SIGNAL(clicked()),this,SLOT(showChatWidget7()));
 
     toolBtn8 =new QToolButton;
-    toolBtn8->setText(tr("青墨暖暖"));
+    toolBtn8->setText(QStringLiteral("青墨暖暖"));
     toolBtn8->setIcon(QPixmap(":/images/qmnn.png"));
     toolBtn8->setIconSize(QPixmap(":/images/qmnn.png").size());
     toolBtn8->setAutoRaise(true);
@@ -73,7 +73,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     connect(toolBtn8,SIGNAL(clicked()),this,SLOT(showChatWidget8()));
 
     toolBtn9 =new QToolButton;
-    toolBtn9->setText(tr("无语"));
+    toolBtn9->setText(QStringLiteral("无语"));
     toolBtn9->setIcon(QPixmap(":/images/wy.png"));
     toolBtn9->setIconSize(QPixmap(":/images/wy.png").size());
     toolBtn9->setAutoRaise(true);
@@ -95,7 +95,7 @@ Drawer::Drawer(QWidget *parent, Qt::WindowFlags f)
     layout->addWidget(toolBtn9);
     layout->addStretch();//插入一个占位符
 
-    this->addItem((QWidget*)groupBox,tr("群成员"));    
+    this->addItem((QWidget*)groupBox,QStringLiteral("群成员"));    
 }
 
 void Drawer::showChatWidget1()
